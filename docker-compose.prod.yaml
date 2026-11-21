@@ -1,0 +1,189 @@
+name: sai-ajanta-production
+
+services:
+  # ============================================================================
+  # 1. Primary PostgreSQL 16 Database Engine
+  # ============================================================================
+  postgres:
+    image: postgres:16-bookworm
+    container_name: sai-ajanta-prod-postgres
+    restart: always
+    command: ["postgres", "-c", "max_connections=300"]
+    environment:
+      TZ: Asia/Kolkata
+      POSTGRES_USER: ${POSTGRES_USER:-medusa}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Database password must be set}
+      POSTGRES_DB: ${POSTGRES_DB:-medusa}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-medusa} -d ${POSTGRES_DB:-medusa}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - internal-net
+
+  # ============================================================================
+  # 2. PgBouncer Connection Pooler (Handles up to 250 concurrent DB connections)
+  # ============================================================================
+  pgbouncer:
+    image: edoburu/pgbouncer:1.22.1-p0
+    container_name: sai-ajanta-prod-pgbouncer
+    restart: always
+    environment:
+      DB_USER: ${POSTGRES_USER:-medusa}
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: ${POSTGRES_DB:-medusa}
+      POOL_MODE: transaction
+      MAX_CLIENT_CONN: 250
+      DEFAULT_POOL_SIZE: 25
+      MIN_POOL_SIZE: 5
+      RESERVE_POOL_SIZE: 5
+      MAX_DB_CONNECTIONS: 50
+      AUTH_TYPE: scram-sha-256
+      LISTEN_PORT: 6432
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - internal-net
+
+  # ============================================================================
+  # 3. Redis In-Memory Cache & Event Bus
+  # ============================================================================
+  redis:
+    image: redis:7-alpine
+    container_name: sai-ajanta-prod-redis
+    restart: always
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    networks:
+      - internal-net
+
+  # ============================================================================
+  # 4. Medusa 2.0 Headless Commerce & DMS Engine
+  # ============================================================================
+  backend:
+    build:
+      context: .
+      dockerfile: apps/backend/Dockerfile
+    container_name: sai-ajanta-prod-backend
+    restart: always
+    environment:
+      NODE_ENV: production
+      PORT: 9000
+      HOME: "/tmp"
+      MEDUSA_TELEMETRY_DISABLED: "1"
+      DATABASE_URL: "postgres://${POSTGRES_USER:-medusa}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-medusa}?sslmode=disable"
+      DATABASE_POOLED_URL: "postgres://${POSTGRES_USER:-medusa}:${POSTGRES_PASSWORD}@pgbouncer:6432/${POSTGRES_DB:-medusa}?sslmode=disable"
+      REDIS_URL: "redis://redis:6379"
+      STORE_CORS: "${STORE_CORS:-https://sai-ajanta.com}"
+      ADMIN_CORS: "${ADMIN_CORS:-https://admin.sai-ajanta.com}"
+      AUTH_CORS: "${AUTH_CORS:-https://sai-ajanta.com,https://admin.sai-ajanta.com}"
+      JWT_SECRET: "${JWT_SECRET:?JWT_SECRET must be set}"
+      COOKIE_SECRET: "${COOKIE_SECRET:?COOKIE_SECRET must be set}"
+      AUTH_MFA_ENCRYPTION_KEY: "${AUTH_MFA_ENCRYPTION_KEY}"
+      MEDUSA_STATIC_URL: "${MEDUSA_STATIC_URL:-https://api.sai-ajanta.com/static}"
+      LOCAL_NAS_DIR: "/app/local-nas"
+      RAZORPAY_KEY_ID: "${RAZORPAY_KEY_ID}"
+      RAZORPAY_KEY_SECRET: "${RAZORPAY_KEY_SECRET}"
+      # Cloudflare R2 Object Storage
+      R2_ACCOUNT_ID: "${R2_ACCOUNT_ID:-}"
+      R2_ACCESS_KEY_ID: "${R2_ACCESS_KEY_ID:-}"
+      R2_SECRET_ACCESS_KEY: "${R2_SECRET_ACCESS_KEY:-}"
+      R2_BUCKET: "${R2_BUCKET:-}"
+      R2_ENDPOINT: "${R2_ENDPOINT:-}"
+      R2_PUBLIC_URL: "${R2_PUBLIC_URL:-}"
+      R2_REGION: "${R2_REGION:-auto}"
+    volumes:
+      - nas_media_data:/app/local-nas
+    ports:
+      - "${BACKEND_PORT:-9000}:9000"
+    depends_on:
+      pgbouncer:
+        condition: service_started
+      redis:
+        condition: service_healthy
+    networks:
+      - internal-net
+
+  # ============================================================================
+  # 5. Executive Admin Web Portal (Nginx SPA)
+  # ============================================================================
+  admin:
+    build:
+      context: .
+      dockerfile: apps/admin/Dockerfile
+      args:
+        VITE_MEDUSA_BACKEND_URL: "${VITE_MEDUSA_BACKEND_URL:-https://api.sai-ajanta.com}"
+    container_name: sai-ajanta-prod-admin
+    restart: always
+    ports:
+      - "${ADMIN_PORT:-7001}:80"
+    networks:
+      - internal-net
+
+  # ============================================================================
+  # 6. Customer & Dealer Next.js Storefront
+  # ============================================================================
+  storefront:
+    build:
+      context: .
+      dockerfile: apps/storefront/Dockerfile
+      args:
+        NEXT_PUBLIC_MEDUSA_BACKEND_URL: "${NEXT_PUBLIC_MEDUSA_BACKEND_URL:-https://api.sai-ajanta.com}"
+        NEXT_PUBLIC_BASE_URL: "${NEXT_PUBLIC_BASE_URL:-https://sai-ajanta.com}"
+        NEXT_PUBLIC_R2_URL: "${NEXT_PUBLIC_R2_URL:-${R2_PUBLIC_URL:-}}"
+    container_name: sai-ajanta-prod-storefront
+    restart: always
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      NEXT_PUBLIC_MEDUSA_BACKEND_URL: "${NEXT_PUBLIC_MEDUSA_BACKEND_URL:-https://api.sai-ajanta.com}"
+      NEXT_PUBLIC_BASE_URL: "${NEXT_PUBLIC_BASE_URL:-https://sai-ajanta.com}"
+      NEXT_PUBLIC_R2_URL: "${NEXT_PUBLIC_R2_URL:-${R2_PUBLIC_URL:-}}"
+    ports:
+      - "${STOREFRONT_PORT:-3000}:3000"
+    networks:
+      - internal-net
+
+  # ============================================================================
+  # 7. Reverse Proxy & Auto-Renewing SSL (Caddy)
+  # ============================================================================
+  gateway:
+    image: caddy:2.8-alpine
+    container_name: sai-ajanta-prod-gateway
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./deploy/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - backend
+      - admin
+      - storefront
+    networks:
+      - internal-net
+
+volumes:
+  postgres_data:
+  redis_data:
+  nas_media_data:
+  caddy_data:
+  caddy_config:
+
+networks:
+  internal-net:
+    driver: bridge

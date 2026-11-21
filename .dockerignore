@@ -1,0 +1,26 @@
+# Ignored dependencies and cache directories
+node_modules
+apps/*/node_modules
+packages/*/node_modules
+.turbo
+apps/*/.turbo
+apps/storefront/.next
+apps/admin/dist
+apps/backend/dist
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Git repository metadata
+.git
+.gitignore
+
+# Environment files with sensitive credentials (use docker-compose env_file instead)
+.env
+.env.local
+.env.*.local
+*.pem
+
+# Local media (handled via Docker named volumes)
+local-nas

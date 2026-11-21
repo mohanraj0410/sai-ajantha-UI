@@ -1,0 +1,472 @@
+{
+  "startedAt": "2026-11-21T04:24:16.001Z",
+  "productURL": "http://localhost:3000/products/SA-M-DC-60-001",
+  "safety": "Fresh browser context; all non-GET API requests are intercepted. Enquiry and seller responses are mocked. No checkout or production mutation is performed.",
+  "checks": [
+    {
+      "name": "Live product and all reference sections render",
+      "status": "passed"
+    },
+    {
+      "name": "Gallery thumbnails and previous/next controls",
+      "status": "passed"
+    },
+    {
+      "name": "Photo zoom toggles accessibly",
+      "status": "passed"
+    },
+    {
+      "name": "Lightbox opens; Escape restores trigger focus",
+      "status": "passed"
+    },
+    {
+      "name": "Finish selection and engineering table stay in sync",
+      "status": "passed"
+    },
+    {
+      "name": "Quantity controls update subtotal and enforce limits",
+      "status": "passed"
+    },
+    {
+      "name": "Pack selection recalculates price and subtotal",
+      "status": "passed"
+    },
+    {
+      "name": "Wishlist toggles and persists across reload",
+      "status": "passed"
+    },
+    {
+      "name": "Compare toggles",
+      "status": "passed"
+    },
+    {
+      "name": "SKU and share buttons copy correct values",
+      "status": "passed"
+    },
+    {
+      "name": "PIN validation filters input and avoids invalid requests",
+      "status": "passed"
+    },
+    {
+      "name": "PIN loading and success show resolved seller",
+      "status": "passed"
+    },
+    {
+      "name": "Editing PIN clears prior resolved seller",
+      "status": "passed"
+    },
+    {
+      "name": "Unserved PIN displays enquiry response",
+      "status": "passed"
+    },
+    {
+      "name": "Seller API error and network error remain recoverable",
+      "status": "passed"
+    },
+    {
+      "name": "Quote opens, validates empty form, and returns keyboard focus",
+      "status": "passed"
+    },
+    {
+      "name": "Quote mocked failure retries successfully with selected item payload",
+      "status": "passed"
+    },
+    {
+      "name": "Technical tabs work with pointer and keyboard",
+      "status": "passed"
+    },
+    {
+      "name": "Print button invokes print",
+      "status": "passed"
+    },
+    {
+      "name": "Technical jump and installation/contact links retain destinations",
+      "status": "passed"
+    },
+    {
+      "name": "Add to cart preserves selected variant and quantity locally",
+      "status": "passed"
+    },
+    {
+      "name": "Related products navigate to their actual product route",
+      "status": "passed"
+    },
+    {
+      "name": "Floor springs retain enquiry-only behavior",
+      "status": "passed"
+    },
+    {
+      "name": "Responsive viewport 1440px has no page overflow",
+      "status": "passed",
+      "detail": {
+        "viewport": 1440,
+        "document": 1440,
+        "body": 1440,
+        "overflowingElements": []
+      }
+    },
+    {
+      "name": "Responsive viewport 1280px has no page overflow",
+      "status": "passed",
+      "detail": {
+        "viewport": 1280,
+        "document": 1280,
+        "body": 1280,
+        "overflowingElements": []
+      }
+    },
+    {
+      "name": "Responsive viewport 1024px has no page overflow",
+      "status": "passed",
+      "detail": {
+        "viewport": 1024,
+        "document": 1024,
+        "body": 1024,
+        "overflowingElements": []
+      }
+    },
+    {
+      "name": "Responsive viewport 768px has no page overflow",
+      "status": "passed",
+      "detail": {
+        "viewport": 768,
+        "document": 768,
+        "body": 768,
+        "overflowingElements": [
+          {
+            "tag": "DIV",
+            "className": "group relative flex flex-col justify-between rounded-3xl border border-[#E2E8F0] bg-white p-4 shadow-sm hover:border-[#00897B] hover:shadow-lg transit"
+          },
+          {
+            "tag": "BUTTON",
+            "className": "absolute top-4 right-4 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 border border-slate-200 text-slate-500 hover:text-red-50"
+          },
+          {
+            "tag": "svg",
+            "className": "[object SVGAnimatedString]"
+          },
+          {
+            "tag": "path",
+            "className": "[object SVGAnimatedString]"
+          },
+          {
+            "tag": "A",
+            "className": "relative block aspect-[4/3] w-full rounded-2xl bg-[#F8FAFC] overflow-hidden p-4"
+          },
+          {
+            "tag": "IMG",
+            "className": "object-contain p-2 group-hover:scale-105 transition-transform duration-300"
+          },
+          {
+            "tag": "DIV",
+            "className": "mt-4 flex-1 flex flex-col justify-between"
+          },
+          {
+            "tag": "DIV",
+            "className": ""
+          }
+        ]
+      }
+    },
+    {
+      "name": "Responsive viewport 390px has no page overflow",
+      "status": "passed",
+      "detail": {
+        "viewport": 390,
+        "document": 390,
+        "body": 390,
+        "overflowingElements": [
+          {
+            "tag": "DIV",
+            "className": "group relative flex flex-col justify-between rounded-3xl border border-[#E2E8F0] bg-white p-4 shadow-sm hover:border-[#00897B] hover:shadow-lg transit"
+          },
+          {
+            "tag": "BUTTON",
+            "className": "absolute top-4 right-4 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 border border-slate-200 text-slate-500 hover:text-red-50"
+          },
+          {
+            "tag": "svg",
+            "className": "[object SVGAnimatedString]"
+          },
+          {
+            "tag": "path",
+            "className": "[object SVGAnimatedString]"
+          },
+          {
+            "tag": "A",
+            "className": "relative block aspect-[4/3] w-full rounded-2xl bg-[#F8FAFC] overflow-hidden p-4"
+          },
+          {
+            "tag": "IMG",
+            "className": "object-contain p-2 group-hover:scale-105 transition-transform duration-300"
+          },
+          {
+            "tag": "DIV",
+            "className": "mt-4 flex-1 flex flex-col justify-between"
+          },
+          {
+            "tag": "DIV",
+            "className": ""
+          }
+        ]
+      }
+    },
+    {
+      "name": "Responsive viewport 320px has no page overflow",
+      "status": "passed",
+      "detail": {
+        "viewport": 320,
+        "document": 320,
+        "body": 320,
+        "overflowingElements": [
+          {
+            "tag": "DIV",
+            "className": "group relative flex flex-col justify-between rounded-3xl border border-[#E2E8F0] bg-white p-4 shadow-sm hover:border-[#00897B] hover:shadow-lg transit"
+          },
+          {
+            "tag": "BUTTON",
+            "className": "absolute top-4 right-4 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 border border-slate-200 text-slate-500 hover:text-red-50"
+          },
+          {
+            "tag": "svg",
+            "className": "[object SVGAnimatedString]"
+          },
+          {
+            "tag": "path",
+            "className": "[object SVGAnimatedString]"
+          },
+          {
+            "tag": "A",
+            "className": "relative block aspect-[4/3] w-full rounded-2xl bg-[#F8FAFC] overflow-hidden p-4"
+          },
+          {
+            "tag": "IMG",
+            "className": "object-contain p-2 group-hover:scale-105 transition-transform duration-300"
+          },
+          {
+            "tag": "DIV",
+            "className": "mt-4 flex-1 flex flex-col justify-between"
+          },
+          {
+            "tag": "DIV",
+            "className": ""
+          }
+        ]
+      }
+    },
+    {
+      "name": "No uncaught page errors",
+      "status": "passed"
+    },
+    {
+      "name": "No unexpected browser console errors",
+      "status": "passed",
+      "detail": "503, 422, and ERR_FAILED entries are intentionally mocked seller/enquiry failure coverage."
+    },
+    {
+      "name": "No unexpected API mutation attempts",
+      "status": "passed"
+    }
+  ],
+  "viewports": [
+    {
+      "width": 1440,
+      "viewport": 1440,
+      "document": 1440,
+      "body": 1440,
+      "overflowingElements": []
+    },
+    {
+      "width": 1280,
+      "viewport": 1280,
+      "document": 1280,
+      "body": 1280,
+      "overflowingElements": []
+    },
+    {
+      "width": 1024,
+      "viewport": 1024,
+      "document": 1024,
+      "body": 1024,
+      "overflowingElements": []
+    },
+    {
+      "width": 768,
+      "viewport": 768,
+      "document": 768,
+      "body": 768,
+      "overflowingElements": [
+        {
+          "tag": "DIV",
+          "className": "group relative flex flex-col justify-between rounded-3xl border border-[#E2E8F0] bg-white p-4 shadow-sm hover:border-[#00897B] hover:shadow-lg transit"
+        },
+        {
+          "tag": "BUTTON",
+          "className": "absolute top-4 right-4 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 border border-slate-200 text-slate-500 hover:text-red-50"
+        },
+        {
+          "tag": "svg",
+          "className": "[object SVGAnimatedString]"
+        },
+        {
+          "tag": "path",
+          "className": "[object SVGAnimatedString]"
+        },
+        {
+          "tag": "A",
+          "className": "relative block aspect-[4/3] w-full rounded-2xl bg-[#F8FAFC] overflow-hidden p-4"
+        },
+        {
+          "tag": "IMG",
+          "className": "object-contain p-2 group-hover:scale-105 transition-transform duration-300"
+        },
+        {
+          "tag": "DIV",
+          "className": "mt-4 flex-1 flex flex-col justify-between"
+        },
+        {
+          "tag": "DIV",
+          "className": ""
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "viewport": 390,
+      "document": 390,
+      "body": 390,
+      "overflowingElements": [
+        {
+          "tag": "DIV",
+          "className": "group relative flex flex-col justify-between rounded-3xl border border-[#E2E8F0] bg-white p-4 shadow-sm hover:border-[#00897B] hover:shadow-lg transit"
+        },
+        {
+          "tag": "BUTTON",
+          "className": "absolute top-4 right-4 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 border border-slate-200 text-slate-500 hover:text-red-50"
+        },
+        {
+          "tag": "svg",
+          "className": "[object SVGAnimatedString]"
+        },
+        {
+          "tag": "path",
+          "className": "[object SVGAnimatedString]"
+        },
+        {
+          "tag": "A",
+          "className": "relative block aspect-[4/3] w-full rounded-2xl bg-[#F8FAFC] overflow-hidden p-4"
+        },
+        {
+          "tag": "IMG",
+          "className": "object-contain p-2 group-hover:scale-105 transition-transform duration-300"
+        },
+        {
+          "tag": "DIV",
+          "className": "mt-4 flex-1 flex flex-col justify-between"
+        },
+        {
+          "tag": "DIV",
+          "className": ""
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "viewport": 320,
+      "document": 320,
+      "body": 320,
+      "overflowingElements": [
+        {
+          "tag": "DIV",
+          "className": "group relative flex flex-col justify-between rounded-3xl border border-[#E2E8F0] bg-white p-4 shadow-sm hover:border-[#00897B] hover:shadow-lg transit"
+        },
+        {
+          "tag": "BUTTON",
+          "className": "absolute top-4 right-4 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 border border-slate-200 text-slate-500 hover:text-red-50"
+        },
+        {
+          "tag": "svg",
+          "className": "[object SVGAnimatedString]"
+        },
+        {
+          "tag": "path",
+          "className": "[object SVGAnimatedString]"
+        },
+        {
+          "tag": "A",
+          "className": "relative block aspect-[4/3] w-full rounded-2xl bg-[#F8FAFC] overflow-hidden p-4"
+        },
+        {
+          "tag": "IMG",
+          "className": "object-contain p-2 group-hover:scale-105 transition-transform duration-300"
+        },
+        {
+          "tag": "DIV",
+          "className": "mt-4 flex-1 flex flex-col justify-between"
+        },
+        {
+          "tag": "DIV",
+          "className": ""
+        }
+      ]
+    }
+  ],
+  "blockedMutations": [],
+  "enquiryPayloads": [
+    {
+      "name": "QA Product Reference",
+      "role": "Architect / Consultant",
+      "organization": "",
+      "phone": "9876543210",
+      "email": "qa-product-reference@example.invalid",
+      "city": "Trichy",
+      "postal_code": "620001",
+      "division": "Door Closer & Floor Spring",
+      "items": [
+        {
+          "sku": "SA-M-DC-60-001",
+          "name": "Door closer -60-Half Round Silver with Scissor ARM",
+          "category": "Door Closer & Floor Spring",
+          "quantity": 3,
+          "pack": "Standard Lot (10 Units)",
+          "unitPriceInr": 11480
+        }
+      ],
+      "notes": "[Product Inquiry / Sample Request]\nProduct: Door closer -60-Half Round Silver with Scissor ARM (SA-M-DC-60-001)\nCategory: Door Closer & Floor Spring\nFinish Variant: Matte Black\nRequested Lot: Standard Lot (10 Units) × 3 lots\nEstimated Basis: ₹34,440\nSite Notes: Intercepted UI regression; no production write.",
+      "source": "product-detail-modal"
+    },
+    {
+      "name": "QA Product Reference",
+      "role": "Architect / Consultant",
+      "organization": "",
+      "phone": "9876543210",
+      "email": "qa-product-reference@example.invalid",
+      "city": "Trichy",
+      "postal_code": "620001",
+      "division": "Door Closer & Floor Spring",
+      "items": [
+        {
+          "sku": "SA-M-DC-60-001",
+          "name": "Door closer -60-Half Round Silver with Scissor ARM",
+          "category": "Door Closer & Floor Spring",
+          "quantity": 3,
+          "pack": "Standard Lot (10 Units)",
+          "unitPriceInr": 11480
+        }
+      ],
+      "notes": "[Product Inquiry / Sample Request]\nProduct: Door closer -60-Half Round Silver with Scissor ARM (SA-M-DC-60-001)\nCategory: Door Closer & Floor Spring\nFinish Variant: Matte Black\nRequested Lot: Standard Lot (10 Units) × 3 lots\nEstimated Basis: ₹34,440\nSite Notes: Intercepted UI regression; no production write.",
+      "source": "product-detail-modal"
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+    "Failed to load resource: net::ERR_FAILED",
+    "Failed to load resource: the server responded with a status of 422 (Unprocessable Entity)"
+  ],
+  "finishedAt": "2026-11-21T04:24:30.298Z",
+  "summary": {
+    "passed": 32,
+    "failed": 0
+  }
+}

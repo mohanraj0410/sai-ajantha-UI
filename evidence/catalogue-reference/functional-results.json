@@ -1,0 +1,1082 @@
+{
+  "startedAt": "2026-11-21T04:43:52.951Z",
+  "catalogueURL": "http://localhost:3000/products",
+  "safety": "Fresh browser context. All non-GET API requests are intercepted and blocked. Product GET responses are read live or mocked for loading/error/empty coverage. No checkout or production mutation is performed.",
+  "liveProductCount": 281,
+  "checks": [
+    {
+      "name": "Live catalogue renders actual products, prices, images and total",
+      "status": "passed",
+      "detail": {
+        "rendered": 18,
+        "total": 281,
+        "loadedPhotos": 18,
+        "fallbackPhotos": 4
+      }
+    },
+    {
+      "name": "Pagination advances and restores first page",
+      "status": "passed"
+    },
+    {
+      "name": "SKU search updates URL and survives reload",
+      "status": "passed"
+    },
+    {
+      "name": "Search empty state resets filters",
+      "status": "passed"
+    },
+    {
+      "name": "Category filtering uses real category count and URL",
+      "status": "passed"
+    },
+    {
+      "name": "Category browser history restores prior selection",
+      "status": "passed"
+    },
+    {
+      "name": "Size, material and finish filters synchronize URL",
+      "status": "passed",
+      "detail": {
+        "unavailableFilters": [
+          "size"
+        ],
+        "note": "Filters without any catalogued values are recorded instead of inventing product data."
+      }
+    },
+    {
+      "name": "Approval and public-price filters work",
+      "status": "failed",
+      "error": "locator.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('option', { name: 'With Listed Public Price' })\u001b[22m\n\u001b[2m    - locator resolved to <div role=\"option\" tabindex=\"-1\" aria-selected=\"false\" data-state=\"unchecked\" data-slot=\"select-item\" data-radix-collection-item=\"\" aria-labelledby=\"radix-_r_43_\" class=\"relative flex w-full cursor-pointer items-center gap-2 rounded-lg py-2 pr-8 pl-2.5 text-xs font-medium text-[#153C66] outline-none select-none focus:bg-[#F4F6F9] focus:text-[#12878F] data-[disabled]:pointer-events-none data-[disabled]:opacity-50\">…</div>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <nextjs-portal></nextjs-portal> from <script data-nextjs-dev-overlay=\"true\">…</script> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <nextjs-portal></nextjs-portal> from <script data-nextjs-dev-overlay=\"true\">…</script> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    19 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <nextjs-portal></nextjs-portal> from <script data-nextjs-dev-overlay=\"true\">…</script> subtree intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n"
+    },
+    {
+      "name": "Brand filter uses live brand values and URL",
+      "status": "failed",
+      "error": "expect(locator).toBeVisible() failed\n\nLocator: locator('.sa-catalogue:visible')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" locator('.sa-catalogue:visible') with timeout 5000ms\n  - waiting for locator('.sa-catalogue:visible')\n"
+    },
+    {
+      "name": "Sort by name and price follows live data and URL",
+      "status": "passed"
+    },
+    {
+      "name": "Price slider filters and reset restores catalogue",
+      "status": "passed"
+    },
+    {
+      "name": "Kitchen subcollections remain functional",
+      "status": "passed"
+    },
+    {
+      "name": "Wishlist persists and can be removed",
+      "status": "passed"
+    },
+    {
+      "name": "Compare enforces four-product limit and opens technical table",
+      "status": "passed"
+    },
+    {
+      "name": "Quick view displays product and restores focus on Escape",
+      "status": "passed"
+    },
+    {
+      "name": "Quick view pack cart preserves local item details",
+      "status": "passed"
+    },
+    {
+      "name": "Card add-to-cart stays local and quote-only cards retain quote links",
+      "status": "passed"
+    },
+    {
+      "name": "Grid and list controls preserve results when present",
+      "status": "passed"
+    },
+    {
+      "name": "Mobile filter drawer updates finish and can reset",
+      "status": "passed"
+    },
+    {
+      "name": "Catalogue error response offers working retry",
+      "status": "passed"
+    },
+    {
+      "name": "Empty catalogue state links to enquiry and contact",
+      "status": "passed"
+    },
+    {
+      "name": "Loading state recovers to catalogue",
+      "status": "passed"
+    },
+    {
+      "name": "Responsive catalogue 1440px has no page overflow",
+      "status": "passed",
+      "detail": {
+        "viewport": 1440,
+        "document": 1440,
+        "body": 1440
+      }
+    },
+    {
+      "name": "Responsive catalogue 1280px has no page overflow",
+      "status": "passed",
+      "detail": {
+        "viewport": 1280,
+        "document": 1280,
+        "body": 1280
+      }
+    },
+    {
+      "name": "Responsive catalogue 1024px has no page overflow",
+      "status": "passed",
+      "detail": {
+        "viewport": 1024,
+        "document": 1024,
+        "body": 1024
+      }
+    },
+    {
+      "name": "Responsive catalogue 768px has no page overflow",
+      "status": "passed",
+      "detail": {
+        "viewport": 768,
+        "document": 768,
+        "body": 768
+      }
+    },
+    {
+      "name": "Responsive catalogue 390px has no page overflow",
+      "status": "passed",
+      "detail": {
+        "viewport": 390,
+        "document": 390,
+        "body": 390
+      }
+    },
+    {
+      "name": "Responsive catalogue 320px has no page overflow",
+      "status": "passed",
+      "detail": {
+        "viewport": 320,
+        "document": 320,
+        "body": 320
+      }
+    },
+    {
+      "name": "No uncaught application errors or API mutations; media errors recorded separately",
+      "status": "failed",
+      "error": "expect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 66\n\n- Array []\n+ Array [\n+   Object {\n+     \"message\": \"./apps/storefront/components/ProductQuickViewModal.tsx:14:1\n+ Error: Module not found: Can't resolve '@/lib/product-media'\n+   12 | import { useStore } from \\\"@/components/StoreProvider\\\";\n+   13 | import { ProductPhoto } from \\\"@/components/non-home/ProductPhoto\\\";\n+ > 14 | import { getWorkbookProductPhotoFallback } from \\\"@/lib/product-media\\\";\n+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n+   15 | import { Badge } from \\\"@/components/ui/badge\\\";\n+   16 | import { Button } from \\\"@/components/ui/button\\\";\n+   17 | import {\n+\n+ Import map: aliased to relative './lib/product-media' inside of [project]/apps/storefront\n+\n+\n+ Import traces:\n+   Client Component Browser:\n+     ./apps/storefront/components/ProductQuickViewModal.tsx [Client Component Browser]\n+     ./apps/storefront/components/CatalogStorefront.tsx [Client Component Browser]\n+     ./apps/storefront/components/CatalogStorefront.tsx [Server Component]\n+     ./apps/storefront/app/products/page.tsx [Server Component]\n+\n+   Client Component SSR:\n+     ./apps/storefront/components/ProductQuickViewModal.tsx [Client Component SSR]\n+     ./apps/storefront/components/CatalogStorefront.tsx [Client Component SSR]\n+     ./apps/storefront/components/CatalogStorefront.tsx [Server Component]\n+     ./apps/storefront/app/products/page.tsx [Server Component]\n+\n+ https://nextjs.org/docs/messages/module-not-found\n+\n+ \",\n+     \"url\": \"http://localhost:3000/products\",\n+   },\n+   Object {\n+     \"message\": \"./apps/storefront/components/ProductQuickViewModal.tsx:14:1\n+ Error: Module not found: Can't resolve '@/lib/product-media'\n+   12 | import { useStore } from \\\"@/components/StoreProvider\\\";\n+   13 | import { ProductPhoto } from \\\"@/components/non-home/ProductPhoto\\\";\n+ > 14 | import { getWorkbookProductPhotoFallback } from \\\"@/lib/product-media\\\";\n+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n+   15 | import { Badge } from \\\"@/components/ui/badge\\\";\n+   16 | import { Button } from \\\"@/components/ui/button\\\";\n+   17 | import {\n+\n+ Import map: aliased to relative './lib/product-media' inside of [project]/apps/storefront\n+\n+\n+ Import traces:\n+   Client Component Browser:\n+     ./apps/storefront/components/ProductQuickViewModal.tsx [Client Component Browser]\n+     ./apps/storefront/components/CatalogStorefront.tsx [Client Component Browser]\n+     ./apps/storefront/components/CatalogStorefront.tsx [Server Component]\n+     ./apps/storefront/app/products/page.tsx [Server Component]\n+\n+   Client Component SSR:\n+     ./apps/storefront/components/ProductQuickViewModal.tsx [Client Component SSR]\n+     ./apps/storefront/components/CatalogStorefront.tsx [Client Component SSR]\n+     ./apps/storefront/components/CatalogStorefront.tsx [Server Component]\n+     ./apps/storefront/app/products/page.tsx [Server Component]\n+\n+ https://nextjs.org/docs/messages/module-not-found\n+\n+ \",\n+     \"url\": \"http://localhost:3000/products\",\n+   },\n+ ]"
+    }
+  ],
+  "viewports": [
+    {
+      "width": 1440,
+      "viewport": 1440,
+      "document": 1440,
+      "body": 1440
+    },
+    {
+      "width": 1280,
+      "viewport": 1280,
+      "document": 1280,
+      "body": 1280
+    },
+    {
+      "width": 1024,
+      "viewport": 1024,
+      "document": 1024,
+      "body": 1024
+    },
+    {
+      "width": 768,
+      "viewport": 768,
+      "document": 768,
+      "body": 768
+    },
+    {
+      "width": 390,
+      "viewport": 390,
+      "document": 390,
+      "body": 390
+    },
+    {
+      "width": 320,
+      "viewport": 320,
+      "document": 320,
+      "body": 320
+    }
+  ],
+  "blockedMutations": [],
+  "pageErrors": [
+    {
+      "url": "http://localhost:3000/products",
+      "message": "./apps/storefront/components/ProductQuickViewModal.tsx:14:1\nError: Module not found: Can't resolve '@/lib/product-media'\n  12 | import { useStore } from \"@/components/StoreProvider\";\n  13 | import { ProductPhoto } from \"@/components/non-home/ProductPhoto\";\n> 14 | import { getWorkbookProductPhotoFallback } from \"@/lib/product-media\";\n     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  15 | import { Badge } from \"@/components/ui/badge\";\n  16 | import { Button } from \"@/components/ui/button\";\n  17 | import {\n\nImport map: aliased to relative './lib/product-media' inside of [project]/apps/storefront\n\n\nImport traces:\n  Client Component Browser:\n    ./apps/storefront/components/ProductQuickViewModal.tsx [Client Component Browser]\n    ./apps/storefront/components/CatalogStorefront.tsx [Client Component Browser]\n    ./apps/storefront/components/CatalogStorefront.tsx [Server Component]\n    ./apps/storefront/app/products/page.tsx [Server Component]\n\n  Client Component SSR:\n    ./apps/storefront/components/ProductQuickViewModal.tsx [Client Component SSR]\n    ./apps/storefront/components/CatalogStorefront.tsx [Client Component SSR]\n    ./apps/storefront/components/CatalogStorefront.tsx [Server Component]\n    ./apps/storefront/app/products/page.tsx [Server Component]\n\nhttps://nextjs.org/docs/messages/module-not-found\n\n"
+    },
+    {
+      "url": "http://localhost:3000/products",
+      "message": "./apps/storefront/components/ProductQuickViewModal.tsx:14:1\nError: Module not found: Can't resolve '@/lib/product-media'\n  12 | import { useStore } from \"@/components/StoreProvider\";\n  13 | import { ProductPhoto } from \"@/components/non-home/ProductPhoto\";\n> 14 | import { getWorkbookProductPhotoFallback } from \"@/lib/product-media\";\n     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  15 | import { Badge } from \"@/components/ui/badge\";\n  16 | import { Button } from \"@/components/ui/button\";\n  17 | import {\n\nImport map: aliased to relative './lib/product-media' inside of [project]/apps/storefront\n\n\nImport traces:\n  Client Component Browser:\n    ./apps/storefront/components/ProductQuickViewModal.tsx [Client Component Browser]\n    ./apps/storefront/components/CatalogStorefront.tsx [Client Component Browser]\n    ./apps/storefront/components/CatalogStorefront.tsx [Server Component]\n    ./apps/storefront/app/products/page.tsx [Server Component]\n\n  Client Component SSR:\n    ./apps/storefront/components/ProductQuickViewModal.tsx [Client Component SSR]\n    ./apps/storefront/components/CatalogStorefront.tsx [Client Component SSR]\n    ./apps/storefront/components/CatalogStorefront.tsx [Server Component]\n    ./apps/storefront/app/products/page.tsx [Server Component]\n\nhttps://nextjs.org/docs/messages/module-not-found\n\n"
+    }
+  ],
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+    "./apps/storefront/components/ProductQuickViewModal.tsx:14:1\nError: Module not found: Can't resolve '@/lib/product-media'\n  12 | import { useStore } from \"@/components/StoreProvider\";\n  13 | import { ProductPhoto } from \"@/components/non-home/ProductPhoto\";\n> 14 | import { getWorkbookProductPhotoFallback } from \"@/lib/product-media\";\n     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  15 | import { Badge } from \"@/components/ui/badge\";\n  16 | import { Button } from \"@/components/ui/button\";\n  17 | import {\n\nImport map: aliased to relative './lib/product-media' inside of [project]/apps/storefront\n\nImport traces:\n  Client Component Browser:\n    ./apps/storefront/components/ProductQuickViewModal.tsx [Client Component Browser]\n    ./apps/storefront/components/CatalogStorefront.tsx [Client Component Browser]\n    ./apps/storefront/components/CatalogStorefront.tsx [Server Component]\n    ./apps/storefront/app/products/page.tsx [Server Component]\n\n  Client Component SSR:\n    ./apps/storefront/components/ProductQuickViewModal.tsx [Client Component SSR]\n    ./apps/storefront/components/CatalogStorefront.tsx [Client Component SSR]\n    ./apps/storefront/components/CatalogStorefront.tsx [Server Component]\n    ./apps/storefront/app/products/page.tsx [Server Component]\n\nhttps://nextjs.org/docs/messages/module-not-found",
+    "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+    "Refused to execute script from 'http://localhost:3000/_next/static/development/_clientMiddlewareManifest.js' because its MIME type ('application/json') is not executable, and strict MIME type checking is enabled.",
+    "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+  ],
+  "networkErrors": [
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fdoor-closer-and-floor-spring%2Fdoor-closer-and-floor-spring-sa-i-fs-bold-110-012.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fdoor-closer-and-floor-spring%2Fdoor-closer-and-floor-spring-sa-i-fs-bold-125-013.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fdoor-closer-and-floor-spring%2Fdoor-closer-and-floor-spring-sa-i-fs-bold-150-014.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fkitchen-basket%2Fkitchen-basket-sa-t-kb-oo2.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fkitchen-basket%2Fkitchen-basket-sa-t-kb-oo14.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fkitchen-basket%2Fkitchen-basket-sa-t-kb-oo22.jpg&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Faluminium%2Faluminium-a-sg-12-001.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Faluminium%2Faluminium-a-sg-16-003.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Faluminium%2Faluminium-a-dg-12-004.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Faluminium%2Faluminium-a-db-12-007.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Faluminium%2Faluminium-a-dt-12-008.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Faluminium%2Faluminium-a-dd-12-009.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Faluminium%2Faluminium-a-dv-8-010.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Faluminium%2Faluminium-a-clip-012.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=%2Fproducts%2Faluminium-a-sg-12-001.png&w=384&q=75",
+      "status": 400,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=%2Fproducts%2Faluminium-a-sg-16-003.png&w=384&q=75",
+      "status": 400,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=%2Fproducts%2Faluminium-a-dg-12-004.png&w=384&q=75",
+      "status": 400,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=%2Fproducts%2Faluminium-a-db-12-007.png&w=384&q=75",
+      "status": 400,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=%2Fproducts%2Faluminium-a-dt-12-008.png&w=384&q=75",
+      "status": 400,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=%2Fproducts%2Faluminium-a-dd-12-009.png&w=384&q=75",
+      "status": 400,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=%2Fproducts%2Faluminium-a-dv-8-010.png&w=384&q=75",
+      "status": 400,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=%2Fproducts%2Faluminium-a-clip-012.png&w=384&q=75",
+      "status": 400,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/products",
+      "status": 500,
+      "resourceType": "document"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Ffgm-fittings%2Ffgm-fittings-fgm-centerpvc-004.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fmesh%2Fmesh-ma-d-mesh-black-3-001.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fladder%2Fladder-sa-wall-support-l-sun-20-029.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fladder%2Fladder-a-type-l-sun-20-014.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fladder%2Fladder-a-type-l-sun-18-012.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fladder%2Fladder-a-type-l-sun-16-010.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fladder%2Fladder-a-type-l-sun-14-008.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fladder%2Fladder-a-type-l-sun-13-009.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fkitchen-basket%2Fkitchen-basket-sa-t-kb-oo39.jpg&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fkitchen-basket%2Fkitchen-basket-sa-t-kb-oo43.jpg&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fkitchen-basket%2Fkitchen-basket-sa-t-kb-oo97.jpg&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fkitchen-basket%2Fkitchen-basket-sa-t-kb-oo99.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fkitchen-basket%2Fkitchen-basket-sa-t-kb-oo103.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/api/products",
+      "status": 503,
+      "resourceType": "fetch"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fdoor-closer-and-floor-spring%2Fdoor-closer-and-floor-spring-sa-i-fs-bold-125-013.png&w=256&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fdoor-closer-and-floor-spring%2Fdoor-closer-and-floor-spring-sa-i-fs-bold-150-014.png&w=256&q=75",
+      "status": 404,
+      "resourceType": "image"
+    }
+  ],
+  "mediaAudits": [
+    {
+      "label": "Initial first 18 products",
+      "total": 18,
+      "loaded": 18,
+      "unavailable": [],
+      "fallbacks": [
+        {
+          "sku": "SA-I-FS-BOLD 110-012",
+          "originalUrl": "http://localhost:9000/static/products/door-closer-and-floor-spring/door-closer-and-floor-spring-sa-i-fs-bold-110-012.png",
+          "loaded": true,
+          "currentUrl": "http://localhost:3000/_next/image?url=%2Fproducts%2Fworkbook%2Fdoor-closer-and-floor-spring-sa-i-fs-bold-110-012.png&w=384&q=75",
+          "requestedUrl": "/products/workbook/door-closer-and-floor-spring-sa-i-fs-bold-110-012.png",
+          "status": "loaded-fallback"
+        },
+        {
+          "sku": "SA-I-FS-BOLD 125-013",
+          "originalUrl": "http://localhost:9000/static/products/door-closer-and-floor-spring/door-closer-and-floor-spring-sa-i-fs-bold-125-013.png",
+          "loaded": true,
+          "currentUrl": "http://localhost:3000/_next/image?url=%2Fproducts%2Fworkbook%2Fdoor-closer-and-floor-spring-sa-i-fs-bold-125-013.png&w=384&q=75",
+          "requestedUrl": "/products/workbook/door-closer-and-floor-spring-sa-i-fs-bold-125-013.png",
+          "status": "loaded-fallback"
+        },
+        {
+          "sku": "SA-I-FS-BOLD 150-014",
+          "originalUrl": "http://localhost:9000/static/products/door-closer-and-floor-spring/door-closer-and-floor-spring-sa-i-fs-bold-150-014.png",
+          "loaded": true,
+          "currentUrl": "http://localhost:3000/_next/image?url=%2Fproducts%2Fworkbook%2Fdoor-closer-and-floor-spring-sa-i-fs-bold-150-014.png&w=384&q=75",
+          "requestedUrl": "/products/workbook/door-closer-and-floor-spring-sa-i-fs-bold-150-014.png",
+          "status": "loaded-fallback"
+        },
+        {
+          "sku": "SA-T-KB-OO2",
+          "originalUrl": "http://localhost:9000/static/products/kitchen-basket/kitchen-basket-sa-t-kb-oo2.png",
+          "loaded": true,
+          "currentUrl": "http://localhost:3000/_next/image?url=%2Fproducts%2Fworkbook%2Fkitchen-basket-sa-t-kb-oo2.png&w=384&q=75",
+          "requestedUrl": "/products/workbook/kitchen-basket-sa-t-kb-oo2.png",
+          "status": "loaded-fallback"
+        }
+      ]
+    },
+    {
+      "label": "Aluminium category",
+      "total": 18,
+      "loaded": 7,
+      "unavailable": [
+        {
+          "sku": "A-SG-12-001",
+          "originalUrl": "http://localhost:9000/static/products/aluminium/aluminium-a-sg-12-001.png",
+          "loaded": false,
+          "currentUrl": null,
+          "requestedUrl": null,
+          "status": "unavailable"
+        },
+        {
+          "sku": "A-SG-16-003",
+          "originalUrl": "http://localhost:9000/static/products/aluminium/aluminium-a-sg-16-003.png",
+          "loaded": false,
+          "currentUrl": null,
+          "requestedUrl": null,
+          "status": "unavailable"
+        },
+        {
+          "sku": "A-DG-12-004",
+          "originalUrl": "http://localhost:9000/static/products/aluminium/aluminium-a-dg-12-004.png",
+          "loaded": false,
+          "currentUrl": null,
+          "requestedUrl": null,
+          "status": "unavailable"
+        },
+        {
+          "sku": "A-DG-14-005",
+          "originalUrl": "http://localhost:9000/static/products/aluminium/aluminium-a-dg-12-004.png",
+          "loaded": false,
+          "currentUrl": null,
+          "requestedUrl": null,
+          "status": "unavailable"
+        },
+        {
+          "sku": "A-DG-16-006",
+          "originalUrl": "http://localhost:9000/static/products/aluminium/aluminium-a-dg-12-004.png",
+          "loaded": false,
+          "currentUrl": null,
+          "requestedUrl": null,
+          "status": "unavailable"
+        },
+        {
+          "sku": "A-DB-12-007",
+          "originalUrl": "http://localhost:9000/static/products/aluminium/aluminium-a-db-12-007.png",
+          "loaded": false,
+          "currentUrl": null,
+          "requestedUrl": null,
+          "status": "unavailable"
+        },
+        {
+          "sku": "A-DT-12-008",
+          "originalUrl": "http://localhost:9000/static/products/aluminium/aluminium-a-dt-12-008.png",
+          "loaded": false,
+          "currentUrl": null,
+          "requestedUrl": null,
+          "status": "unavailable"
+        },
+        {
+          "sku": "A-DD-12-009",
+          "originalUrl": "http://localhost:9000/static/products/aluminium/aluminium-a-dd-12-009.png",
+          "loaded": false,
+          "currentUrl": null,
+          "requestedUrl": null,
+          "status": "unavailable"
+        },
+        {
+          "sku": "A-DV-8-010",
+          "originalUrl": "http://localhost:9000/static/products/aluminium/aluminium-a-dv-8-010.png",
+          "loaded": false,
+          "currentUrl": null,
+          "requestedUrl": null,
+          "status": "unavailable"
+        },
+        {
+          "sku": "A-DV-7-011",
+          "originalUrl": "http://localhost:9000/static/products/aluminium/aluminium-a-dv-8-010.png",
+          "loaded": false,
+          "currentUrl": null,
+          "requestedUrl": null,
+          "status": "unavailable"
+        },
+        {
+          "sku": "A-CLIP-012",
+          "originalUrl": "http://localhost:9000/static/products/aluminium/aluminium-a-clip-012.png",
+          "loaded": false,
+          "currentUrl": null,
+          "requestedUrl": null,
+          "status": "unavailable"
+        }
+      ],
+      "fallbacks": []
+    },
+    {
+      "label": "Hardware category",
+      "total": 18,
+      "loaded": 18,
+      "unavailable": [],
+      "fallbacks": []
+    },
+    {
+      "label": "material: Confirm material grade per SKU",
+      "total": 18,
+      "loaded": 18,
+      "unavailable": [],
+      "fallbacks": [
+        {
+          "sku": "SA-I-FS-BOLD 110-012",
+          "originalUrl": "http://localhost:9000/static/products/door-closer-and-floor-spring/door-closer-and-floor-spring-sa-i-fs-bold-110-012.png",
+          "loaded": true,
+          "currentUrl": "http://localhost:3000/_next/image?url=%2Fproducts%2Fworkbook%2Fdoor-closer-and-floor-spring-sa-i-fs-bold-110-012.png&w=384&q=75",
+          "requestedUrl": "/products/workbook/door-closer-and-floor-spring-sa-i-fs-bold-110-012.png",
+          "status": "loaded-fallback"
+        },
+        {
+          "sku": "SA-I-FS-BOLD 125-013",
+          "originalUrl": "http://localhost:9000/static/products/door-closer-and-floor-spring/door-closer-and-floor-spring-sa-i-fs-bold-125-013.png",
+          "loaded": true,
+          "currentUrl": "http://localhost:3000/_next/image?url=%2Fproducts%2Fworkbook%2Fdoor-closer-and-floor-spring-sa-i-fs-bold-125-013.png&w=384&q=75",
+          "requestedUrl": "/products/workbook/door-closer-and-floor-spring-sa-i-fs-bold-125-013.png",
+          "status": "loaded-fallback"
+        },
+        {
+          "sku": "SA-I-FS-BOLD 150-014",
+          "originalUrl": "http://localhost:9000/static/products/door-closer-and-floor-spring/door-closer-and-floor-spring-sa-i-fs-bold-150-014.png",
+          "loaded": true,
+          "currentUrl": "http://localhost:3000/_next/image?url=%2Fproducts%2Fworkbook%2Fdoor-closer-and-floor-spring-sa-i-fs-bold-150-014.png&w=384&q=75",
+          "requestedUrl": "/products/workbook/door-closer-and-floor-spring-sa-i-fs-bold-150-014.png",
+          "status": "loaded-fallback"
+        },
+        {
+          "sku": "SA-T-KB-OO2",
+          "originalUrl": "http://localhost:9000/static/products/kitchen-basket/kitchen-basket-sa-t-kb-oo2.png",
+          "loaded": true,
+          "currentUrl": "http://localhost:3000/_next/image?url=%2Fproducts%2Fworkbook%2Fkitchen-basket-sa-t-kb-oo2.png&w=384&q=75",
+          "requestedUrl": "/products/workbook/kitchen-basket-sa-t-kb-oo2.png",
+          "status": "loaded-fallback"
+        }
+      ]
+    },
+    {
+      "label": "finish: Anodized Silver",
+      "total": 18,
+      "loaded": 7,
+      "unavailable": [
+        {
+          "sku": "A-SG-12-001",
+          "originalUrl": "http://localhost:9000/static/products/aluminium/aluminium-a-sg-12-001.png",
+          "loaded": false,
+          "currentUrl": null,
+          "requestedUrl": null,
+          "status": "unavailable"
+        },
+        {
+          "sku": "A-SG-16-003",
+          "originalUrl": "http://localhost:9000/static/products/aluminium/aluminium-a-sg-16-003.png",
+          "loaded": false,
+          "currentUrl": null,
+          "requestedUrl": null,
+          "status": "unavailable"
+        },
+        {
+          "sku": "A-DG-12-004",
+          "originalUrl": "http://localhost:9000/static/products/aluminium/aluminium-a-dg-12-004.png",
+          "loaded": false,
+          "currentUrl": null,
+          "requestedUrl": null,
+          "status": "unavailable"
+        },
+        {
+          "sku": "A-DG-14-005",
+          "originalUrl": "http://localhost:9000/static/products/aluminium/aluminium-a-dg-12-004.png",
+          "loaded": false,
+          "currentUrl": null,
+          "requestedUrl": null,
+          "status": "unavailable"
+        },
+        {
+          "sku": "A-DG-16-006",
+          "originalUrl": "http://localhost:9000/static/products/aluminium/aluminium-a-dg-12-004.png",
+          "loaded": false,
+          "currentUrl": null,
+          "requestedUrl": null,
+          "status": "unavailable"
+        },
+        {
+          "sku": "A-DB-12-007",
+          "originalUrl": "http://localhost:9000/static/products/aluminium/aluminium-a-db-12-007.png",
+          "loaded": false,
+          "currentUrl": null,
+          "requestedUrl": null,
+          "status": "unavailable"
+        },
+        {
+          "sku": "A-DT-12-008",
+          "originalUrl": "http://localhost:9000/static/products/aluminium/aluminium-a-dt-12-008.png",
+          "loaded": false,
+          "currentUrl": null,
+          "requestedUrl": null,
+          "status": "unavailable"
+        },
+        {
+          "sku": "A-DD-12-009",
+          "originalUrl": "http://localhost:9000/static/products/aluminium/aluminium-a-dd-12-009.png",
+          "loaded": false,
+          "currentUrl": null,
+          "requestedUrl": null,
+          "status": "unavailable"
+        },
+        {
+          "sku": "A-DV-8-010",
+          "originalUrl": "http://localhost:9000/static/products/aluminium/aluminium-a-dv-8-010.png",
+          "loaded": false,
+          "currentUrl": null,
+          "requestedUrl": null,
+          "status": "unavailable"
+        },
+        {
+          "sku": "A-DV-7-011",
+          "originalUrl": "http://localhost:9000/static/products/aluminium/aluminium-a-dv-8-010.png",
+          "loaded": false,
+          "currentUrl": null,
+          "requestedUrl": null,
+          "status": "unavailable"
+        },
+        {
+          "sku": "A-CLIP-012",
+          "originalUrl": "http://localhost:9000/static/products/aluminium/aluminium-a-clip-012.png",
+          "loaded": false,
+          "currentUrl": null,
+          "requestedUrl": null,
+          "status": "unavailable"
+        }
+      ],
+      "fallbacks": []
+    },
+    {
+      "label": "Kitchen Basket: Kitchen Baskets",
+      "total": 18,
+      "loaded": 18,
+      "unavailable": [],
+      "fallbacks": [
+        {
+          "sku": "SA-T-KB-OO2",
+          "originalUrl": "http://localhost:9000/static/products/kitchen-basket/kitchen-basket-sa-t-kb-oo2.png",
+          "loaded": true,
+          "currentUrl": "http://localhost:3000/_next/image?url=%2Fproducts%2Fworkbook%2Fkitchen-basket-sa-t-kb-oo2.png&w=384&q=75",
+          "requestedUrl": "/products/workbook/kitchen-basket-sa-t-kb-oo2.png",
+          "status": "loaded-fallback"
+        },
+        {
+          "sku": "SA-T-KB-OO14",
+          "originalUrl": "http://localhost:9000/static/products/kitchen-basket/kitchen-basket-sa-t-kb-oo14.png",
+          "loaded": true,
+          "currentUrl": "http://localhost:3000/_next/image?url=%2Fproducts%2Fworkbook%2Fkitchen-basket-sa-t-kb-oo14.png&w=384&q=75",
+          "requestedUrl": "/products/workbook/kitchen-basket-sa-t-kb-oo14.png",
+          "status": "loaded-fallback"
+        }
+      ]
+    },
+    {
+      "label": "Kitchen Basket: Trolleys With Slides",
+      "total": 6,
+      "loaded": 6,
+      "unavailable": [],
+      "fallbacks": [
+        {
+          "sku": "SA-T-KB-OO107",
+          "originalUrl": "http://localhost:9000/static/products/kitchen-basket/kitchen-basket-sa-t-kb-oo39.jpg",
+          "loaded": true,
+          "currentUrl": "http://localhost:3000/_next/image?url=%2Fproducts%2Fworkbook%2Fkitchen-basket-sa-t-kb-oo39.jpg&w=384&q=75",
+          "requestedUrl": "/products/workbook/kitchen-basket-sa-t-kb-oo39.jpg",
+          "status": "loaded-fallback"
+        }
+      ]
+    },
+    {
+      "label": "Kitchen Basket: Cabinet Accessories",
+      "total": 13,
+      "loaded": 13,
+      "unavailable": [],
+      "fallbacks": [
+        {
+          "sku": "SA-T-KB-OO43",
+          "originalUrl": "http://localhost:9000/static/products/kitchen-basket/kitchen-basket-sa-t-kb-oo43.jpg",
+          "loaded": true,
+          "currentUrl": "http://localhost:3000/_next/image?url=%2Fproducts%2Fworkbook%2Fkitchen-basket-sa-t-kb-oo43.jpg&w=384&q=75",
+          "requestedUrl": "/products/workbook/kitchen-basket-sa-t-kb-oo43.jpg",
+          "status": "loaded-fallback"
+        },
+        {
+          "sku": "SA-T-KB-OO97",
+          "originalUrl": "http://localhost:9000/static/products/kitchen-basket/kitchen-basket-sa-t-kb-oo97.jpg",
+          "loaded": true,
+          "currentUrl": "http://localhost:3000/_next/image?url=%2Fproducts%2Fworkbook%2Fkitchen-basket-sa-t-kb-oo97.jpg&w=384&q=75",
+          "requestedUrl": "/products/workbook/kitchen-basket-sa-t-kb-oo97.jpg",
+          "status": "loaded-fallback"
+        },
+        {
+          "sku": "SA-T-KB-OO99",
+          "originalUrl": "http://localhost:9000/static/products/kitchen-basket/kitchen-basket-sa-t-kb-oo99.png",
+          "loaded": true,
+          "currentUrl": "http://localhost:3000/_next/image?url=%2Fproducts%2Fworkbook%2Fkitchen-basket-sa-t-kb-oo99.png&w=384&q=75",
+          "requestedUrl": "/products/workbook/kitchen-basket-sa-t-kb-oo99.png",
+          "status": "loaded-fallback"
+        },
+        {
+          "sku": "SA-T-KB-OO111",
+          "originalUrl": "http://localhost:9000/static/products/kitchen-basket/kitchen-basket-sa-t-kb-oo97.jpg",
+          "loaded": true,
+          "currentUrl": "http://localhost:3000/_next/image?url=%2Fproducts%2Fworkbook%2Fkitchen-basket-sa-t-kb-oo97.jpg&w=384&q=75",
+          "requestedUrl": "/products/workbook/kitchen-basket-sa-t-kb-oo97.jpg",
+          "status": "loaded-fallback"
+        }
+      ]
+    },
+    {
+      "label": "Kitchen Basket: Vegetable Baskets",
+      "total": 6,
+      "loaded": 6,
+      "unavailable": [],
+      "fallbacks": [
+        {
+          "sku": "SA-T-KB-OO103",
+          "originalUrl": "http://localhost:9000/static/products/kitchen-basket/kitchen-basket-sa-t-kb-oo103.png",
+          "loaded": true,
+          "currentUrl": "http://localhost:3000/_next/image?url=%2Fproducts%2Fworkbook%2Fkitchen-basket-sa-t-kb-oo103.png&w=384&q=75",
+          "requestedUrl": "/products/workbook/kitchen-basket-sa-t-kb-oo103.png",
+          "status": "loaded-fallback"
+        }
+      ]
+    }
+  ],
+  "finishedAt": "2026-11-21T04:45:07.517Z",
+  "assetFailures": [
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fdoor-closer-and-floor-spring%2Fdoor-closer-and-floor-spring-sa-i-fs-bold-110-012.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fdoor-closer-and-floor-spring%2Fdoor-closer-and-floor-spring-sa-i-fs-bold-125-013.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fdoor-closer-and-floor-spring%2Fdoor-closer-and-floor-spring-sa-i-fs-bold-150-014.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fkitchen-basket%2Fkitchen-basket-sa-t-kb-oo2.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fkitchen-basket%2Fkitchen-basket-sa-t-kb-oo14.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fkitchen-basket%2Fkitchen-basket-sa-t-kb-oo22.jpg&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Faluminium%2Faluminium-a-sg-12-001.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Faluminium%2Faluminium-a-sg-16-003.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Faluminium%2Faluminium-a-dg-12-004.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Faluminium%2Faluminium-a-db-12-007.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Faluminium%2Faluminium-a-dt-12-008.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Faluminium%2Faluminium-a-dd-12-009.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Faluminium%2Faluminium-a-dv-8-010.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Faluminium%2Faluminium-a-clip-012.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=%2Fproducts%2Faluminium-a-sg-12-001.png&w=384&q=75",
+      "status": 400,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=%2Fproducts%2Faluminium-a-sg-16-003.png&w=384&q=75",
+      "status": 400,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=%2Fproducts%2Faluminium-a-dg-12-004.png&w=384&q=75",
+      "status": 400,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=%2Fproducts%2Faluminium-a-db-12-007.png&w=384&q=75",
+      "status": 400,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=%2Fproducts%2Faluminium-a-dt-12-008.png&w=384&q=75",
+      "status": 400,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=%2Fproducts%2Faluminium-a-dd-12-009.png&w=384&q=75",
+      "status": 400,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=%2Fproducts%2Faluminium-a-dv-8-010.png&w=384&q=75",
+      "status": 400,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=%2Fproducts%2Faluminium-a-clip-012.png&w=384&q=75",
+      "status": 400,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Ffgm-fittings%2Ffgm-fittings-fgm-centerpvc-004.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fmesh%2Fmesh-ma-d-mesh-black-3-001.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fladder%2Fladder-sa-wall-support-l-sun-20-029.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fladder%2Fladder-a-type-l-sun-20-014.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fladder%2Fladder-a-type-l-sun-18-012.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fladder%2Fladder-a-type-l-sun-16-010.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fladder%2Fladder-a-type-l-sun-14-008.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fladder%2Fladder-a-type-l-sun-13-009.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fkitchen-basket%2Fkitchen-basket-sa-t-kb-oo39.jpg&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fkitchen-basket%2Fkitchen-basket-sa-t-kb-oo43.jpg&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fkitchen-basket%2Fkitchen-basket-sa-t-kb-oo97.jpg&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fkitchen-basket%2Fkitchen-basket-sa-t-kb-oo99.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fkitchen-basket%2Fkitchen-basket-sa-t-kb-oo103.png&w=384&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fdoor-closer-and-floor-spring%2Fdoor-closer-and-floor-spring-sa-i-fs-bold-125-013.png&w=256&q=75",
+      "status": 404,
+      "resourceType": "image"
+    },
+    {
+      "url": "http://localhost:3000/_next/image?url=http%3A%2F%2Flocalhost%3A9000%2Fstatic%2Fproducts%2Fdoor-closer-and-floor-spring%2Fdoor-closer-and-floor-spring-sa-i-fs-bold-150-014.png&w=256&q=75",
+      "status": 404,
+      "resourceType": "image"
+    }
+  ],
+  "unavailablePhotos": [
+    {
+      "sku": "A-SG-12-001",
+      "originalUrl": "http://localhost:9000/static/products/aluminium/aluminium-a-sg-12-001.png",
+      "loaded": false,
+      "currentUrl": null,
+      "requestedUrl": null,
+      "status": "unavailable"
+    },
+    {
+      "sku": "A-SG-16-003",
+      "originalUrl": "http://localhost:9000/static/products/aluminium/aluminium-a-sg-16-003.png",
+      "loaded": false,
+      "currentUrl": null,
+      "requestedUrl": null,
+      "status": "unavailable"
+    },
+    {
+      "sku": "A-DG-12-004",
+      "originalUrl": "http://localhost:9000/static/products/aluminium/aluminium-a-dg-12-004.png",
+      "loaded": false,
+      "currentUrl": null,
+      "requestedUrl": null,
+      "status": "unavailable"
+    },
+    {
+      "sku": "A-DG-14-005",
+      "originalUrl": "http://localhost:9000/static/products/aluminium/aluminium-a-dg-12-004.png",
+      "loaded": false,
+      "currentUrl": null,
+      "requestedUrl": null,
+      "status": "unavailable"
+    },
+    {
+      "sku": "A-DG-16-006",
+      "originalUrl": "http://localhost:9000/static/products/aluminium/aluminium-a-dg-12-004.png",
+      "loaded": false,
+      "currentUrl": null,
+      "requestedUrl": null,
+      "status": "unavailable"
+    },
+    {
+      "sku": "A-DB-12-007",
+      "originalUrl": "http://localhost:9000/static/products/aluminium/aluminium-a-db-12-007.png",
+      "loaded": false,
+      "currentUrl": null,
+      "requestedUrl": null,
+      "status": "unavailable"
+    },
+    {
+      "sku": "A-DT-12-008",
+      "originalUrl": "http://localhost:9000/static/products/aluminium/aluminium-a-dt-12-008.png",
+      "loaded": false,
+      "currentUrl": null,
+      "requestedUrl": null,
+      "status": "unavailable"
+    },
+    {
+      "sku": "A-DD-12-009",
+      "originalUrl": "http://localhost:9000/static/products/aluminium/aluminium-a-dd-12-009.png",
+      "loaded": false,
+      "currentUrl": null,
+      "requestedUrl": null,
+      "status": "unavailable"
+    },
+    {
+      "sku": "A-DV-8-010",
+      "originalUrl": "http://localhost:9000/static/products/aluminium/aluminium-a-dv-8-010.png",
+      "loaded": false,
+      "currentUrl": null,
+      "requestedUrl": null,
+      "status": "unavailable"
+    },
+    {
+      "sku": "A-DV-7-011",
+      "originalUrl": "http://localhost:9000/static/products/aluminium/aluminium-a-dv-8-010.png",
+      "loaded": false,
+      "currentUrl": null,
+      "requestedUrl": null,
+      "status": "unavailable"
+    },
+    {
+      "sku": "A-CLIP-012",
+      "originalUrl": "http://localhost:9000/static/products/aluminium/aluminium-a-clip-012.png",
+      "loaded": false,
+      "currentUrl": null,
+      "requestedUrl": null,
+      "status": "unavailable"
+    }
+  ],
+  "summary": {
+    "passed": 26,
+    "failed": 3
+  }
+}

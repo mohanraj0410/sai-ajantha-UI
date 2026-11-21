@@ -1,0 +1,20 @@
+{
+  "name": "@sai-ajanta/types",
+  "version": "1.0.0",
+  "description": "Shared TypeScript definitions for Sai Ajantha Storefront and Backend",
+  "main": "./dist/index.js",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "private": true,
+  "scripts": {
+    "type-check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.2"
+  }
+}

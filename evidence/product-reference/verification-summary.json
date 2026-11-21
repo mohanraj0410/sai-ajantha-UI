@@ -1,0 +1,84 @@
+{
+  "route": "/products/SA-M-DC-60-001",
+  "implementation": [
+    {
+      "file": "apps/storefront/components/ProductDetailView.tsx",
+      "change": "Reference layout hooks, genuine catalog photos with explicitly labelled detail crops, accessible gallery selection/zoom, matching icons, image loading hints, and corrected duplicated GST separator. Existing purchase, PIN resolution, and enquiry logic preserved."
+    },
+    {
+      "file": "apps/storefront/app/products/[id]/product-detail.css",
+      "change": "Scoped responsive reference design for hero, gallery, purchase card, overview, specs, support, related carousel, header/footer, reduced motion, and print."
+    },
+    {
+      "file": "scripts/test-product-reference.mjs",
+      "change": "Isolated browser regression with mocked mutations and JSON evidence."
+    }
+  ],
+  "checks": {
+    "productionBuild": {
+      "command": "npm run build (apps/storefront)",
+      "status": "passed"
+    },
+    "typeCheck": {
+      "command": "npm --prefix apps/storefront run type-check",
+      "status": "passed"
+    },
+    "componentLint": {
+      "command": "npm run lint -- components/ProductDetailView.tsx (apps/storefront)",
+      "status": "passed"
+    },
+    "browserRegression": {
+      "command": "node scripts/test-product-reference.mjs",
+      "mode": "Production server",
+      "passed": 32,
+      "failed": 0
+    },
+    "diffWhitespace": "passed",
+    "pageErrors": [],
+    "unexpectedApiMutations": []
+  },
+  "visualComparison": {
+    "reference": "reference.png",
+    "referenceSize": {
+      "width": 809,
+      "height": 1942
+    },
+    "inferredDesktopViewport": 1280,
+    "iterations": [
+      "iteration-1-desktop.png",
+      "iteration-2-desktop.png",
+      "final-desktop-1280.png"
+    ],
+    "finalDesktop": "final-desktop-1280.png",
+    "responsiveWidths": [
+      1440,
+      1280,
+      1024,
+      768,
+      390,
+      320
+    ],
+    "evidence": [
+      "final-1440.png",
+      "final-1024.png",
+      "final-768.png",
+      "final-390.png",
+      "final-320.png"
+    ],
+    "similarities": [
+      "Section order and two-column proportions",
+      "Curved dark teal hero and mint purchase panel",
+      "Overview facts and split narrative",
+      "Full-width spec tabs and matrix",
+      "Project banner, product cards, and compact footer"
+    ],
+    "remainingDifferences": [
+      "Exact overhead door-closer hero background unavailable; existing architectural asset used.",
+      "Catalog has one photo for this SKU. Three thumbnails are truthful crops of that photograph, not the reference alternate angles.",
+      "Actual catalog copy, product codes and current footer year are retained where reference differs.",
+      "No numerical visual similarity score is claimed."
+    ]
+  },
+  "safety": "Existing uncommitted user changes preserved. No database migrations, real enquiry records, orders, or payments performed for this work.",
+  "generatedAt": "2026-11-21T04:25:06.301Z"
+}

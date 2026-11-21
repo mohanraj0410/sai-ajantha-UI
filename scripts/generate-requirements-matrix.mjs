@@ -1,0 +1,39 @@
+import fs from 'node:fs';
+
+const matrixMd = `# Sai Ajantha — Master Content Requirements Matrix
+
+> **Scope:** Full application content simplification & healthcare elimination  
+> **Source Documents:** 8 Official Documents + Owner Decision Registers  
+> **Target Audience:** Homeowners, small shops, fabricators, carpenters, contractors, dealers & distributors in Tamil Nadu Tier-2 / Tier-3 markets  
+> **Language Standard:** Plain, friendly, natural English; clear shopping terms; zero jargon; zero medical marketing.
+
+---
+
+## Content Requirements Matrix
+
+| ID | Application Surface | File / Route | Current Content State | Proposed Simple English Replacement | Source Document & Section | Implementation Status |
+| :---: | :--- | :--- | :--- | :--- | :--- | :---: |
+| **REQ-01** | **Main Navigation** | \`apps/storefront/components/Navbar.tsx\` | Mixed links, "Solutions", "Healthcare" references | Primary links: \`Home\`, \`Shop by Category\`, \`House of Ajanta\`, \`Contact\`. Easy access to Search, Login, Cart. | \`UI_Checklist.docx\` §1 | **PLANNED** |
+| **REQ-02** | **Hero 01 OVERVIEW** | \`apps/storefront/components/HeroSection.tsx\` | Mentions healthcare infrastructure, clinical solutions | "Quality Without Compromise" — Screens, Aluminium & Architectural Hardware for Homes and Businesses. (Visual layout 100% preserved) | \`UI_Checklist.docx\` §2, Master Prompt | **PLANNED** |
+| **REQ-03** | **Hero 02 PROMISE** | \`apps/storefront/components/HeroSection.tsx\` | Mentions hospital projects, clinical suites | Dependable supply, accurate specifications, and direct assistance across Tamil Nadu. (Visual layout 100% preserved) | \`UI_Checklist.docx\` §2, Master Prompt | **PLANNED** |
+| **REQ-04** | **Category Tiles (9 Direct)** | \`apps/storefront/components/ProductCategoriesSection.tsx\` | Long technical paragraphs, hospital door controls | 9 Clean Tiles: Finished Insect Screens, Aluminium Sections, Hardware, Ladders, Rubber/PVC Beading, FGM Fittings & Channels, Clips, Frames & Channels, Mesh. Each with short fit description & \`View Products\`. | \`Owner_Approval.docx\` §2, \`UI_Checklist.docx\` §2 | **PLANNED** |
+| **REQ-05** | **House of Ajanta Section** | \`apps/storefront/components/OurSolutionsSection.tsx\` / \`HouseOfAjantaSection.tsx\` | Clinical hygiene corridor controls, healthcare systems | \`Door Closers\` & \`Kitchen Baskets\` with simple fit descriptions. Clear notice: Floor Springs available on \`Get a Quote\` basis. | \`Owner_Approval.docx\` §2, \`UI_Checklist.docx\` §2 | **PLANNED** |
+| **REQ-06** | **About Us Section** | \`apps/storefront/app/about/page.tsx\` & \`AboutSection.tsx\` | "Turnkey Healthcare & Commercial Infrastructure Partner", hospital administrators | "Sai Ajantha supplies quality screens, aluminium profiles, ladders and hardware for homes, shops and building projects across Tamil Nadu since 1994." | \`UI_Checklist.docx\` §2, Copy Guide | **PLANNED** |
+| **REQ-07** | **Core Values / Why Choose** | \`apps/storefront/components/WhyChooseUsSection.tsx\` & \`TrustHighlightsSection.tsx\` | "Clinical-grade durability", "Hospital green room testing" | 4 Source-supported points: \`Exact Specifications\`, \`Verified Dimensions\`, \`Direct Supply\`, \`Help Choosing Your Fit\`. | \`UI_Checklist.docx\` §2, Copy Guide | **PLANNED** |
+| **REQ-08** | **Product Detail Pages (PDP)** | \`apps/storefront/components/ProductDetailView.tsx\` | Monolithic technical claims, hospital applications | Block A: Brand, model, SKU, 3 key fit bullets, verified selling unit, seller identity, PIN check, primary CTA (\`Buy Now\` or \`Get a Quote\`). Complete 2-column specs table below. | \`Product_Presentation_SOP.docx\` Block A | **PLANNED** |
+| **REQ-09** | **Buying Actions (Buy Now vs Quote)** | \`apps/storefront/components/ProductDetailView.tsx\` & Cart | Unclear when to quote vs buy; checkout on quote-only items | \`Buy Now\` only when seller, price, stock, unit, and delivery confirmed. \`Get a Quote\` for made-to-measure, custom cut, or unassigned route. | \`Product_Presentation_SOP.docx\` §1.5 | **PLANNED** |
+| **REQ-10** | **Delivery PIN Check** | Storefront & PDP | "Authorized Territory Allocation" | "Enter your 6-digit delivery PIN code." Clear result: \`Delivery Confirmed (Sold by ...)\` or \`Delivery not confirmed. Send an enquiry.\` | \`Owner_Approval.docx\` §6, Copy Guide | **PLANNED** |
+| **REQ-11** | **Need Installation Service** | \`apps/storefront/components/InstallationRequestDialog.tsx\` | Implied installation included with product | "Need fitting help? Send a separate request. A verified local contractor quotes and bills installation independently." | \`Owner_Approval.docx\` §7 | **PLANNED** |
+| **REQ-12** | **Dealer Portal & Application** | \`apps/storefront/app/dealers/page.tsx\` & \`ApplyDealerModal.tsx\` | Complex onboarding jargon, unverified instant activation | "Apply as Dealer" form (Name, Business Name, Mobile, Location, Products). Plain notice: "Your application is under review. Dealer rates unlock after approval." | \`Owner_Approval.docx\` §5 | **PLANNED** |
+| **REQ-13** | **Distributor Main Workspace** | \`apps/storefront/app/distributors/page.tsx\` | Mixed wholesale & reseller actions | Two distinct tabs: \`Buy Stock\` (purchasing from Sai Ajantha) vs \`Sell & Fulfil\` (resale). Clear target notice: "Proposed first-stock target: ₹3 Lakh before GST." | \`Owner_Approval.docx\` §4 | **PLANNED** |
+| **REQ-14** | **Split Cart & Checkout** | \`apps/storefront/app/cart/page.tsx\` & Checkout | Blended seller items without clear responsibility | Grouped by verified seller: \`Sold by Sai Ajantha Direct\` vs \`Sold by [Distributor Name]\`. Transparent delivery and GST breakdown before payment. | \`Owner_Approval.docx\` §1, §6 | **PLANNED** |
+| **REQ-15** | **Customer Account Tabs** | \`apps/storefront/app/account/page.tsx\` | Complex terminology, hospital placeholders | Simple tabs: \`My Orders\`, \`My Enquiries\`, \`Invoices\`, \`Returns\`, \`Profile\`. Clean status badges. | \`Owner_Approval.docx\` §6, Copy Guide | **PLANNED** |
+| **REQ-16** | **Global Metadata & SEO** | \`apps/storefront/app/layout.tsx\` & page metadata | "Healthcare Interior Infrastructure Solutions across Tamil Nadu" | "Sai Ajantha Interior Solutions — Screens, Aluminium Sections, Ladders & Hardware in Trichy & Tamil Nadu." | Master Prompt, Copy Guide | **PLANNED** |
+| **REQ-17** | **Articles / Blog Guides** | \`apps/storefront/data/articles.ts\` | "Hospital Green Room Design Guidelines", "Infection Control Corridors" | 4 Useful Home & Shop guides: \`How to Measure Your Window for Insect Screens\`, \`Choosing the Right Aluminium Profile\`, \`Door Closer Weight & Width Fit Guide\`, \`Kitchen Basket Sizes\`. | \`UI_Checklist.docx\` §4, Master Prompt | **PLANNED** |
+| **REQ-18** | **Contact & Inquiry Desk** | \`apps/storefront/app/contact/page.tsx\` | Hospital teams department, clinical inquiries | Single contact form with clear audience options: \`Homeowner / General\`, \`Dealer / Trade\`, \`Contractor / Fabricator\`. Verified Trichy address & phone. | \`UI_Checklist.docx\` §2, Copy Guide | **PLANNED** |
+| **REQ-19** | **MUI Admin Operations Copy** | \`apps/admin/src/**\` | Wall-of-text alerts, dense descriptions | Action-focused table headers, concise filter chips, honest blocked banners (\`OWNER_DECISION_PENDING\`), progressive disclosure drawers. | Master Prompt AUI-03, COPY-07 | **COMPLETED IN PREVIOUS STEP / REVIEWED** |
+| **REQ-20** | **Error, Empty & Edge States** | Global Storefront & Admin | "404 Resource missing", "FATAL_ERROR", "Unauthenticated request" | Clear, helpful plain English: \`Item not found\`, \`Enter a 6-digit PIN code\`, \`We couldn't load your orders. Please try again.\` | Master Prompt, Copy Guide | **PLANNED** |
+`;
+
+fs.writeFileSync('docs/content/COPY_REQUIREMENTS_MATRIX.md', matrixMd);
+console.log('Generated docs/content/COPY_REQUIREMENTS_MATRIX.md successfully.');

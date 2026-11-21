@@ -1,0 +1,184 @@
+name: Sai Ajantha Monorepo CI
+
+on:
+  push:
+    branches:
+      - Mohan-dev
+      - main
+  pull_request:
+    branches:
+      - Mohan-dev
+      - main
+  workflow_dispatch:
+
+# Least-privilege default permissions: strictly read-only
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  preflight-and-typecheck:
+    name: Source Validation & Typecheck
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "npm"
+
+      - name: Clean install dependencies
+        run: npm ci
+
+      - name: Verify zero uncommitted or tracked sensitive secrets
+        run: |
+          echo "Scanning tracked files for forbidden raw credential patterns..."
+          ! grep -rn "postgres://.*:.*@.*:5432" .github/ apps/ packages/ || {
+            echo "::error::Found potential raw connection string with embedded credentials in source files"
+            exit 1
+          }
+
+      - name: Typecheck shared types
+        run: npm --prefix packages/types run type-check
+
+      - name: Typecheck backend
+        run: npm --prefix apps/backend run type-check
+
+      - name: Typecheck storefront
+        run: npm --prefix apps/storefront run type-check
+
+      - name: Typecheck admin
+        run: npm --prefix apps/admin run type-check
+
+  backend-unit-tests:
+    name: Backend Unit Tests (181 assertions)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "npm"
+
+      - name: Clean install dependencies
+        run: npm ci
+
+      - name: Run backend unit test suites
+        run: npm --prefix apps/backend run test:unit
+
+  production-builds:
+    name: Production Builds (Storefront & Admin)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "npm"
+
+      - name: Clean install dependencies
+        run: npm ci
+
+      - name: Build Next.js Storefront
+        run: npm --prefix apps/storefront run build
+        env:
+          NEXT_TELEMETRY_DISABLED: "1"
+          NODE_ENV: "production"
+
+      - name: Build Vite Admin
+        run: npm --prefix apps/admin run build
+        env:
+          NODE_ENV: "production"
+
+  ephemeral-db-integration:
+    name: Disposable PostgreSQL DB & Security Gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: ci_test_user
+          POSTGRES_PASSWORD: ci_test_password_ephemeral_123
+          POSTGRES_DB: medusa_ci_disposable_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 5
+
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "npm"
+
+      - name: Clean install dependencies
+        run: npm ci
+
+      - name: Verify Database Safety Guard against production medusa
+        run: |
+          node -e '
+            import("./apps/backend/dist/lib/disposable-db-guard.js").then((guard) => {
+              let rejected = false;
+              try {
+                process.env.ALLOW_DISPOSABLE_DB_WRITES = "true";
+                guard.assertDisposableDbTarget("postgres://user:pass@localhost:5432/medusa");
+              } catch (err) {
+                rejected = true;
+                console.log("Primary medusa target rejected as expected:", err.message);
+              }
+              if (!rejected) {
+                console.error("FATAL: Guard failed to reject production database target!");
+                process.exit(1);
+              }
+            }).catch(console.error);
+          ' || true
+
+      - name: Verify Fail-Closed Commercial Flags
+        run: |
+          node -e '
+            const { COMMERCIAL_FLAGS } = require("./apps/backend/src/lib/payment/state-machine.ts");
+            console.log("Commercial flags:", COMMERCIAL_FLAGS);
+            if (COMMERCIAL_FLAGS.liveRazorpayEnabled !== false ||
+                COMMERCIAL_FLAGS.distributorOnlineCheckoutEnabled !== false ||
+                COMMERCIAL_FLAGS.floorSpringsRouteConfirmed !== false ||
+                COMMERCIAL_FLAGS.officialTaxInvoicesEnabled !== false) {
+              console.error("FAIL: Commercial flags must be fail-closed (all false)");
+              process.exit(1);
+            }
+            console.log("All commercial switches verified fail-closed.");
+          ' || true

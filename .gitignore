@@ -1,0 +1,125 @@
+# ==============================================================================
+# SAI AJANTHA INTERIOR SOLUTIONS — PRODUCTION GITIGNORE
+# Hardened for Lean, Developer-Focused Repository (GitHub-Compliant)
+# Reference documents, reports, backups, and local NAS are kept locally on disk only.
+# ==============================================================================
+
+# 1. Package Dependencies & Stores
+node_modules/
+.pnpm-store/
+vendor/
+
+# 2. Framework & Build Outputs
+.next/
+out/
+dist/
+build/
+.medusa/
+uploads/
+
+# 3. Turborepo Cache
+.turbo/
+
+# 4. Environment & Secrets (Never commit credentials)
+.env
+.env.local
+.env.production
+.env.*.local
+*.env
+*.pem
+*.key
+*.cert
+*.crt
+# Explicit whitelist for tracked environment templates
+!**/.env.example
+!**/.env.template
+
+# 5. Operating System & IDE Files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+*.swp
+*.swo
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+.config/
+
+# 6. Logs & Debug Traces
+*.log
+*.log.*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# 7. Caches & Test Coverage
+.cache/
+**/.cache/
+.npm-qa-cache/
+**/.npm-qa-cache/
+.eslintcache
+*.tsbuildinfo
+/coverage/
+apps/*/coverage/
+packages/*/coverage/
+.nyc_output/
+
+# 8. Database Backups, Dumps & Local SQLite Caches
+deploy/backups/
+*.sql
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+*.dump
+apps/storefront/data/*.db*
+
+# 9. Archives & Compressed Bundles (>100MB GitHub limit safeguard)
+*.zip
+*.tar
+*.gz
+*.tgz
+*.rar
+*.7z
+*.zst
+
+# 10. Local Reference Documents & Large Office Files
+*.pdf
+*.docx
+*.doc
+*.pptx
+*.ppt
+# Preserve authoritative product input workbook required for catalog seeds & tests
+*.xlsx
+!apps/storefront/Sai_Ajantha_Product_Input_Workbook.xlsx
+
+# 11. Documentation, Prompts & Markdown Files (Push development code only)
+docs/
+prompts/
+*.md
+**/*.md
+
+# 12. Local NAS Simulation & Local Media Caches
+local-nas/
+
+# 13. Temporary Files & QA Test Outputs
+*.tmp
+*.temp
+/outputs/
+/screenshots/
+
+# 14. Dedicated Local Archives
+/archive/
+/local-archive/
+/Sai_Ajantha_Archive/
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/

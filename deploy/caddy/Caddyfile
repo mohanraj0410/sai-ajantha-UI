@@ -1,0 +1,52 @@
+# ==============================================================================
+# Sai Ajantha Production Caddy Gateway Configuration
+# Features:
+# - 100% Automated Let's Encrypt / ZeroSSL HTTPS certificates
+# - Automatic HTTP -> HTTPS redirection
+# - Reverse proxying with WebSocket support & compression
+# ==============================================================================
+
+# Global options
+{
+    email {$ACME_EMAIL:admin@sai-ajanta.com}
+    admin off
+}
+
+# 1. Customer & Dealer Storefront
+{$STOREFRONT_DOMAIN:sai-ajanta.com}, {$STOREFRONT_WWW_DOMAIN:www.sai-ajanta.com} {
+    encode gzip zstd
+    reverse_proxy storefront:3000 {
+        header_up Host {host}
+        header_up X-Real-IP {remote_host}
+        header_up X-Forwarded-For {remote_host}
+        header_up X-Forwarded-Proto {scheme}
+    }
+}
+
+# 2. Executive Operations & Admin Portal
+{$ADMIN_DOMAIN:admin.sai-ajanta.com} {
+    encode gzip zstd
+    reverse_proxy admin:80 {
+        header_up Host {host}
+        header_up X-Real-IP {remote_host}
+        header_up X-Forwarded-For {remote_host}
+        header_up X-Forwarded-Proto {scheme}
+    }
+}
+
+# 3. Medusa 2.0 Headless API & Static Media
+{$API_DOMAIN:api.sai-ajanta.com} {
+    encode gzip zstd
+    
+    # 50MB payload limit for high-res CAD and image uploads
+    request_body {
+        max_size 50MB
+    }
+
+    reverse_proxy backend:9000 {
+        header_up Host {host}
+        header_up X-Real-IP {remote_host}
+        header_up X-Forwarded-For {remote_host}
+        header_up X-Forwarded-Proto {scheme}
+    }
+}

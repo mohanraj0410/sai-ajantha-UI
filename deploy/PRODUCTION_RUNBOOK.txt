@@ -1,0 +1,103 @@
+================================================================================
+SAI AJANTHA — OPTION A PRODUCTION DEPLOYMENT RUNBOOK
+================================================================================
+
+1. ARCHITECTURE OVERVIEW (Option A)
+--------------------------------------------------------------------------------
+Internet Traffic (Ports 80 & 443)
+       |
+       v
+Caddy Gateway (Automated Let's Encrypt / ZeroSSL HTTPS)
+       |-- sai-ajanta.com & www.sai-ajanta.com  --> Storefront (Next.js 16 / Port 3000)
+       |-- admin.sai-ajanta.com                 --> Admin Portal (Nginx / Port 80)
+       |-- api.sai-ajanta.com                   --> Medusa 2.0 Backend (Port 9000)
+                                                          |
+                                      +-------------------+-------------------+
+                                      |                                       |
+                                      v                                       v
+                              PostgreSQL 16 Engine                   Redis Cache & Bus
+                              (Max Conns: 300 / Port 5432)           (Port 6379)
+                                      ^
+                                      |
+                              PgBouncer Pooler
+                              (Port 6432)
+
+Note: All database, redis, and service ports run strictly on the internal Docker bridge
+network. They are completely inaccessible from the outside world.
+
+--------------------------------------------------------------------------------
+2. SERVER SIZING RECOMMENDATIONS
+--------------------------------------------------------------------------------
+- Recommended OS: Debian 12 (Bookworm) or Ubuntu 24.04 LTS
+- Minimum Specs: 2 vCPU, 4GB RAM, 40GB+ NVMe SSD
+- Cloud Providers:
+  * Hetzner Cloud: CPX21 (~€7/mo) - Best performance/cost
+  * DigitalOcean: 4GB Basic Droplet ($24/mo)
+  * AWS EC2: t4g.medium / t3.medium (~$25/mo)
+
+--------------------------------------------------------------------------------
+3. FIREWALL PORTS TO OPEN
+--------------------------------------------------------------------------------
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow 22/tcp comment 'SSH'
+sudo ufw allow 80/tcp comment 'HTTP (Caddy ACME Challenge)'
+sudo ufw allow 443/tcp comment 'HTTPS (Encrypted Web Traffic)'
+sudo ufw enable
+
+--------------------------------------------------------------------------------
+4. DNS CONFIGURATION (4 A Records pointing to YOUR_SERVER_IP)
+--------------------------------------------------------------------------------
+A    @ (or sai-ajanta.com)       -> YOUR_SERVER_IP
+A    www.sai-ajanta.com          -> YOUR_SERVER_IP
+A    admin.sai-ajanta.com        -> YOUR_SERVER_IP
+A    api.sai-ajanta.com          -> YOUR_SERVER_IP
+
+--------------------------------------------------------------------------------
+5. STEP-BY-STEP DEPLOYMENT COMMANDS
+--------------------------------------------------------------------------------
+# Step 1: Install Docker on the server
+curl -fsSL https://get.docker.com | sh
+sudo usermod -aG docker $USER
+# Log out and log back in
+
+# Step 2: Clone repository
+git clone <your-repository-url>
+cd SAI-Ajanta-Landing-EDMS-
+
+# Step 3: Configure production secrets
+cp deploy/.env.production.example .env.production
+nano .env.production
+
+# Generate random 64-char secrets by running:
+# openssl rand -hex 32
+# Paste into JWT_SECRET, COOKIE_SECRET, AUTH_MFA_ENCRYPTION_KEY, and POSTGRES_PASSWORD
+
+# Step 4: Run automated deployment
+npm run prod:deploy
+
+# Step 5: Create your initial Super Admin staff login
+npm run prod:admin
+
+--------------------------------------------------------------------------------
+6. PRODUCTION OPERATIONS CHEATSHEET
+--------------------------------------------------------------------------------
+npm run prod:status    # Check running containers and health checks
+npm run prod:logs      # View live streaming container logs
+npm run prod:migrate   # Run database migrations
+npm run prod:seed      # Seed initial catalog / sales channels
+npm run prod:admin     # Create / reset an admin staff user
+npm run prod:backup    # Run an immediate database backup
+npm run prod:down      # Stop production stack
+npm run prod:up        # Rebuild and start production stack
+
+--------------------------------------------------------------------------------
+7. AUTOMATED NIGHTLY BACKUPS (CRON)
+--------------------------------------------------------------------------------
+sudo crontab -e
+Add this line for automated 3:00 AM daily backups with 14-day auto-rotation:
+0 3 * * * cd /path/to/SAI-Ajanta-Landing-EDMS- && /usr/bin/bash deploy/scripts/backup-db.sh >> /var/log/sai-ajanta-backup.log 2>&1
+
+Emergency Database Restore:
+bash deploy/scripts/restore-db.sh /var/backups/sai-ajanta/sai_ajanta_db_YYYYMMDD_HHMMSS.sql.gz
+================================================================================

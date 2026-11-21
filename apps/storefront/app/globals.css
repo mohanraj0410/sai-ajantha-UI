@@ -1,0 +1,543 @@
+@import "tailwindcss";
+
+:root {
+  /* Core Sai Ajantha Architectural Identity */
+  --sa-navy-deep: #102d4d;
+  --sa-navy-dark: #0b1f35;
+  --sa-blue-primary: #174b78;
+  --sa-teal: #079d9a;
+  --sa-cyan: #24c6d0;
+  --sa-teal-soft: #e5f7f6;
+  --sa-bg-light: #f3f6fa;
+  --sa-grey-blue: #eaf0f6;
+
+  /* Backward-compatible Brand Aliases */
+  --brand-navy: #102d4d;
+  --brand-navy-deep: #0b1f35;
+  --brand-teal: #079d9a;
+  --brand-teal-light: #24c6d0;
+  --brand-mist: #c6cad5;
+  --brand-slate: #7b8896;
+  --brand-surface: #f3f6fa;
+  --brand-white: #ffffff;
+
+  /* shadcn/ui Semantic Design Tokens mapped to Sai Ajantha Brand Identity */
+  --radius: 0.625rem;
+  --background: #ffffff;
+  --foreground: #102d4d;
+  --card: #ffffff;
+  --card-foreground: #102d4d;
+  --popover: #ffffff;
+  --popover-foreground: #102d4d;
+  --primary: #102d4d;
+  --primary-foreground: #ffffff;
+  --secondary: #f3f6fa;
+  --secondary-foreground: #102d4d;
+  --muted: #eaf0f6;
+  --muted-foreground: #526274;
+  --accent: #079d9a;
+  --accent-foreground: #ffffff;
+  --destructive: #b91c1c;
+  --destructive-foreground: #ffffff;
+  --border: #c6cad5;
+  --input: #c6cad5;
+  --ring: #079d9a;
+}
+
+@theme inline {
+  --color-brand-navy: var(--brand-navy);
+  --color-brand-navy-deep: var(--brand-navy-deep);
+  --color-brand-teal: var(--brand-teal);
+  --color-brand-teal-light: var(--brand-teal-light);
+  --color-brand-mist: var(--brand-mist);
+  --color-brand-slate: var(--brand-slate);
+  --color-brand-surface: var(--brand-surface);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --font-display: var(--font-poppins), "Plus Jakarta Sans", Arial, Helvetica, sans-serif;
+  --font-sans: var(--font-poppins), "Plus Jakarta Sans", Arial, Helvetica, sans-serif;
+  --font-tamil: var(--font-mukta), var(--font-poppins), sans-serif;
+}
+
+html {
+  scroll-padding-top: 88px;
+  scrollbar-width: thin;
+  scrollbar-color: #009B9B #F2F6F8;
+}
+
+/* Custom Sai Ajantha Architectural Brand Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F2F6F8;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #123B5D 0%, #009B9B 100%);
+  border-radius: 9999px;
+  border: 2px solid #F2F6F8;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #0B2239 0%, #087F8C 100%);
+}
+
+body {
+  background: var(--brand-white);
+  color: var(--sa-navy-deep);
+  font-family: var(--font-poppins), Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================================================
+ * 1. Fluid Architectural Typography Scales
+ * ============================================================================ */
+.type-hero-display {
+  font-family: var(--font-display);
+  font-size: clamp(2.35rem, 4.5vw + 0.75rem, 4.65rem);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.032em;
+}
+
+.type-section-title,
+.sa-section-heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.65rem, 2.2vw + 0.85rem, 2.75rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+
+.type-display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 0.96;
+  letter-spacing: -0.03em;
+}
+
+.type-h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+}
+
+.type-h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.type-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* ============================================================================
+ * 2. Reusable Premium Corporate Visual Utilities
+ * ============================================================================ */
+.sa-gradient-text {
+  background-image: linear-gradient(110deg, #174b78 0%, #079d9a 52%, #24c6d0 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.sa-gradient-text-light {
+  background-image: linear-gradient(105deg, #24c6d0 0%, #98f5fa 50%, #ffffff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes sa-gradient-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.sa-gradient-text-animated {
+  background-image: linear-gradient(
+    110deg,
+    #24c6d0 0%,
+    #9df6fb 32%,
+    #079d9a 64%,
+    #24c6d0 100%
+  );
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: sa-gradient-flow 6.5s ease-in-out infinite;
+}
+
+.sa-btn-gradient {
+  background-image: linear-gradient(115deg, #079d9a 0%, #174b78 55%, #102d4d 100%);
+  background-size: 180% auto;
+  color: #ffffff;
+  box-shadow:
+    0 10px 26px -10px rgba(7, 157, 154, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  transition:
+    background-position 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s ease;
+}
+
+.sa-btn-gradient:hover {
+  background-position: right center;
+  box-shadow:
+    0 14px 30px -10px rgba(36, 198, 208, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.sa-glass-card {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.92) 0%,
+    rgba(243, 246, 250, 0.85) 100%
+  );
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow:
+    0 10px 30px -14px rgba(16, 45, 77, 0.16),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
+}
+
+.sa-glass-dark {
+  background: linear-gradient(
+    145deg,
+    rgba(23, 75, 120, 0.46) 0%,
+    rgba(11, 31, 53, 0.78) 100%
+  );
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow:
+    0 22px 46px -18px rgba(4, 15, 29, 0.72),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.24);
+}
+
+.sa-surface-gradient {
+  background: linear-gradient(180deg, #eaf0f6 0%, #f3f6fa 42%, #ffffff 100%);
+}
+
+.sa-dark-radial-panel {
+  background:
+    radial-gradient(circle at 82% 18%, rgba(36, 198, 208, 0.2) 0%, transparent 48%),
+    radial-gradient(circle at 12% 88%, rgba(7, 157, 154, 0.18) 0%, transparent 50%),
+    linear-gradient(135deg, #0b1f35 0%, #102d4d 54%, #174b78 100%);
+}
+
+.sa-glow-teal {
+  box-shadow:
+    0 20px 50px -20px rgba(11, 31, 53, 0.75),
+    0 0 40px -18px rgba(36, 198, 208, 0.25);
+}
+
+.sa-elevated-card,
+.sa-hover-lift {
+  box-shadow:
+    0 1px 2px rgba(11, 31, 53, 0.05),
+    0 12px 28px -14px rgba(16, 45, 77, 0.13);
+  transition:
+    transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s ease;
+}
+
+.sa-elevated-card:hover,
+.sa-hover-lift:hover {
+  box-shadow:
+    0 6px 14px rgba(11, 31, 53, 0.07),
+    0 24px 44px -16px rgba(7, 157, 154, 0.22);
+}
+
+/* Multi-stop animated perimeter gradient border using mask-composite */
+.sa-border-gradient {
+  position: relative;
+}
+
+.sa-border-gradient::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(
+    130deg,
+    rgba(36, 198, 208, 0.85),
+    rgba(7, 157, 154, 0.55),
+    rgba(23, 75, 120, 0.35),
+    rgba(36, 198, 208, 0.85)
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  z-index: 25;
+}
+
+.sa-border-gradient:hover::after,
+.sa-border-gradient:focus-within::after {
+  opacity: 1;
+}
+
+/* CSS Pseudo-element gradient top border accent on hover (safely inset past rounded corners) */
+.sa-card-accent-top {
+  position: relative;
+  overflow: hidden;
+}
+
+.sa-card-accent-top::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 1rem;
+  right: 1rem;
+  height: 2.5px;
+  border-bottom-left-radius: 9999px;
+  border-bottom-right-radius: 9999px;
+  background: linear-gradient(90deg, #174b78 0%, #079d9a 55%, #24c6d0 100%);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  z-index: 26;
+}
+
+.sa-card-accent-top:hover::before,
+.sa-card-accent-top:focus-within::before {
+  transform: scaleX(1);
+}
+
+/* Subtle architectural grid patterns */
+.brand-grid-accent,
+.sa-background-grid {
+  background-image:
+    linear-gradient(to right, rgba(16, 45, 77, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(16, 45, 77, 0.055) 1px, transparent 1px);
+  background-size: 52px 52px;
+}
+
+.brand-grid-accent-dark {
+  background-image:
+    linear-gradient(to right, rgba(198, 202, 213, 0.09) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(198, 202, 213, 0.09) 1px, transparent 1px);
+  background-size: 52px 52px;
+}
+
+/* Subtle tactile architectural grain on dark banners */
+.sa-noise-overlay {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 0);
+  background-size: 20px 20px;
+}
+
+/* Hide scrollbars cleanly for horizontal tabs */
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+.no-scrollbar::-webkit-scrollbar-track {
+  display: none !important;
+  background: transparent !important;
+}
+.no-scrollbar::-webkit-scrollbar-thumb {
+  display: none !important;
+  background: transparent !important;
+}
+.no-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+/* ============================================================================
+ * 3. Ambient Keyframe Animations (Respecting Reduced Motion)
+ * ============================================================================ */
+@keyframes brand-marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-brand-marquee {
+  display: flex;
+  width: max-content;
+  animation: brand-marquee 38s linear infinite;
+}
+
+.animate-brand-marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes sa-hero-zoom {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-sa-hero-zoom {
+  animation: sa-hero-zoom 22s ease-in-out infinite;
+}
+
+@keyframes sa-float-slow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -7px, 0);
+  }
+}
+
+.animate-sa-float-slow {
+  animation: sa-float-slow 6.5s ease-in-out infinite;
+}
+
+@keyframes sa-ambient-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translate3d(-18px, 14px, 0) scale(1.08);
+    opacity: 0.85;
+  }
+}
+
+.animate-sa-ambient-drift {
+  animation: sa-ambient-drift 12s ease-in-out infinite;
+}
+
+@keyframes sa-fade-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-sa-fade-up {
+  animation: sa-fade-up 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-brand-marquee,
+  .animate-sa-hero-zoom,
+  .animate-sa-float-slow,
+  .animate-sa-ambient-drift,
+  .animate-sa-fade-up,
+  .sa-gradient-text-animated {
+    animation: none !important;
+  }
+  .sa-card-accent-top::before,
+  .sa-border-gradient::after {
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+  }
+}
+
+@media print {
+  header,
+  footer,
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* Standardized 1:1 Square Product & Category Image Container */
+.product-image-container {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Standardized Accessible Focus Ring & Reduced-Motion Guard */
+.sa-focus-ring:focus-visible,
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #079d9a;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sa-hover-lift,
+  .sa-elevated-card,
+  .sa-btn-gradient {
+    transition: none !important;
+    transform: none !important;
+  }
+}

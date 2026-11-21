@@ -1,0 +1,53 @@
+{
+  "name": "sai-ajantha-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "npm@11.20.0",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo dev",
+    "postinstall": "node scripts/ensure-native-binaries.mjs",
+    "setup:debian": "bash scripts/setup-debian.sh",
+    "build": "turbo build",
+    "start": "turbo start",
+    "lint": "turbo lint",
+    "type-check": "turbo type-check",
+    "storefront:dev": "turbo dev --filter=@sai-ajanta/storefront",
+    "storefront:build": "turbo build --filter=@sai-ajanta/storefront",
+    "admin:dev": "turbo dev --filter=@sai-ajanta/admin",
+    "admin:build": "turbo build --filter=@sai-ajanta/admin",
+    "backend:dev": "turbo dev --filter=@dtc/backend",
+    "backend:type-check": "turbo type-check --filter=@dtc/backend",
+    "backend:migrate": "npm --prefix apps/backend run db:migrate",
+    "backend:search:migrate": "npm --prefix apps/backend run db:migrate:search",
+    "backend:setup": "npm --prefix apps/backend run db:setup",
+    "backend:seed": "npm --prefix apps/backend run seed",
+    "backend:admin": "npm --prefix apps/backend run create-admin",
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down",
+    "db:logs": "docker compose logs -f",
+    "prod:up": "docker compose --env-file .env.production -f docker-compose.prod.yaml up -d --build",
+    "prod:down": "docker compose -f docker-compose.prod.yaml down",
+    "prod:logs": "docker compose -f docker-compose.prod.yaml logs -f",
+    "prod:deploy": "bash deploy/scripts/deploy.sh",
+    "prod:migrate": "docker compose --env-file .env.production -f docker-compose.prod.yaml exec backend npm run db:setup",
+    "prod:seed": "docker compose --env-file .env.production -f docker-compose.prod.yaml exec backend npm run seed",
+    "prod:admin": "docker compose --env-file .env.production -f docker-compose.prod.yaml exec backend node ./src/scripts/create-admin.js",
+    "prod:backup": "bash deploy/scripts/backup-db.sh",
+    "prod:status": "docker compose --env-file .env.production -f docker-compose.prod.yaml ps"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.1",
+    "@types/node": "^26.6.6",
+    "exceljs": "^4.4.0",
+    "prettier": "^3.2.5",
+    "turbo": "^2.11.11",
+    "typescript": "^5.6.2"
+  }
+}
